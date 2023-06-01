@@ -1,0 +1,36 @@
+{
+    "name": "kodnificent/laravel-otp",
+    "description": "Package for generating and sending otp",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kodnificent\\LaravelOtp\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel":  {
+            "providers": [
+                "Kodnificent\\LaravelOtp\\OtpServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Kodnificent",
+            "email": "mbamaravictor@gmail.com"
+        }
+    ],
+    "scripts": {
+        "test": "phpunit",
+        "test-f": "phpunit --filter"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^7.5",
+        "phpunit/phpunit": "^10.1",
+        "orchestra/testbench": "^8.5"
+    }
+}
