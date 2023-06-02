@@ -10,3 +10,11 @@ services:
       - "9000"
     volumes:
       - ./:/var/www
+
+  database:
+    image: mysql:8
+    ports:
+      - "3306"
+    environment:
+      MYSQL_DATABASE: laravel-otp
+      MYSQL_ROOT_PASSWORD: password

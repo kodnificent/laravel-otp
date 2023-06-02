@@ -4,11 +4,17 @@
     "type": "library",
     "require": {
         "php": "^8.1",
-        "illuminate/support": "^10.13"
+        "illuminate/support": "^10.13",
+        "spomky-labs/otphp": "^11.2"
     },
     "autoload": {
         "psr-4": {
             "Kodnificent\\LaravelOtp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kodnificent\\LaravelOtp\\Tests\\": "tests/"
         }
     },
     "extra": {

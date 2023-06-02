@@ -4,7 +4,10 @@ namespace Kodnificent\LaravelOtp\Contracts;
 
 interface Otp
 {
-    public function create(): self;
+    public function generate(
+        string $identifier,
+        ?int $length = null
+    ): GeneratedOtp;
 
-    public function send(): self;
+    public function isValid(string $identifier, string $code, ?bool $invalidate = null, ?int $ttl = null): bool;
 }
