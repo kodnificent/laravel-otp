@@ -57,7 +57,7 @@ class Otp implements OtpContract
 
     protected function setTtl(int $ttl): void
     {
-        if (!$ttl || $ttl < 0) {
+        if (is_null($ttl) || $ttl < 0) {
             throw new OtpException('Invalid ttl configured.');
         }
 
@@ -100,8 +100,9 @@ class Otp implements OtpContract
 
     public function isValid(string $identifier, string $code, bool $invalidate = null, ?int $ttl = null): bool
     {
-        $this->setTtl($ttl ?: $this->ttl);
-        $this->setAlwaysInvalidate($invalidate ?: $this->always_invalidate);
+        $this->setTtl(is_null($ttl) ? $this->ttl : $ttl);
+        $this->setAlwaysInvalidate(is_null($invalidate) ? $this->always_invalidate : $invalidate);
+        $this->setLength(strlen($code));
 
         if ($this->always_pass) {
             return true;
@@ -115,6 +116,7 @@ class Otp implements OtpContract
 
         // check for expiry
         $at = now()->createFromTimestamp($secret->at);
+        // dd($at->toString(), $this->ttl);
 
         if ($at->addSeconds($this->ttl)->lte(now())) {
             $this->afterValidation($identifier);
