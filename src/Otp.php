@@ -9,12 +9,12 @@ use OTPHP\TOTP;
 
 class Otp implements OtpContract
 {
-    protected int $period = 1;
-    protected int $length;
-    protected int $ttl;
-    protected bool $always_pass;
-    protected bool $always_invalidate;
-    protected string $hashing_salt;
+    protected $period = 1;
+    protected $length;
+    protected $ttl;
+    protected $always_pass;
+    protected $always_invalidate;
+    protected $hashing_salt;
 
     public function __construct(array $config)
     {
@@ -66,7 +66,7 @@ class Otp implements OtpContract
 
     protected function createOtp(?string $secret_key = null): TOTP
     {
-        return TOTP::create($secret_key, $this->period, digits: $this->length);
+        return TOTP::create($secret_key, $this->period, 'sha1', $this->length);
     }
 
     protected function afterValidation(string $identifier): void

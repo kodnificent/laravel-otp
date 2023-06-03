@@ -16,10 +16,10 @@ class OtpTest extends TestCase
     public function test_generate_method_should_create_pending_otp(string $id, int $len): void
     {
         $otp = $this->getOtp()->generate($id, $len);
-        $this->assertEquals($len, str(($otp->getCode()))->length());
+        $this->assertEquals($len, strlen($otp->getCode()));
 
         $otp = $this->getOtp(['length' => 4])->generate('default_config_length@example.com');
-        $this->assertEquals(4, str(($otp->getCode()))->length());
+        $this->assertEquals(4, strlen($otp->getCode()));
     }
 
     public static function generateMethodDataProvider(): array

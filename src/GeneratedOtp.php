@@ -6,7 +6,11 @@ use Kodnificent\LaravelOtp\Contracts\GeneratedOtp as ContractsGeneratedOtp;
 
 class GeneratedOtp implements ContractsGeneratedOtp
 {
-    public function __construct(protected string $code) {}
+    protected $code;
+
+    public function __construct(string $code) {
+        $this->code = $code;
+    }
 
     public function getCode(): string
     {

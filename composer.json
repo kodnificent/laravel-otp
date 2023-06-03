@@ -3,9 +3,9 @@
     "description": "Package for generating and sending otp",
     "type": "library",
     "require": {
-        "php": "^8.1",
-        "illuminate/support": "^10.13",
-        "spomky-labs/otphp": "^11.2"
+        "php": "^7.2|^8.0",
+        "illuminate/support": "^7.0",
+        "spomky-labs/otphp": "^10.0"
     },
     "autoload": {
         "psr-4": {
@@ -35,8 +35,7 @@
         "test-f": "phpunit --filter"
     },
     "require-dev": {
-        "nunomaduro/collision": "^7.5",
-        "phpunit/phpunit": "^10.1",
-        "orchestra/testbench": "^8.5"
+        "orchestra/testbench": "^5.20",
+        "nunomaduro/collision": "^5.11"
     }
 }
