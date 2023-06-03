@@ -61,10 +61,10 @@ class OtpTest extends TestCase
     public static function generateMethodDataProvider(): array
     {
         return [
-            // 'must remain valid after verifying' => ['test@example.com', 10, false],
-            // 'must invalidate after verifying' => ['test2@example.com', 4, true],
-            // 'must invalidate after verifying (2)' => ['test2@example.com_app_user_password_reset', 4, true],
-            // 'must invalidate by default' => ['test3@example.com', 6],
+            'must remain valid after verifying' => ['test@example.com', 10, false],
+            'must invalidate after verifying' => ['test2@example.com', 4, true],
+            'must invalidate after verifying (2)' => ['test2@example.com_app_user_password_reset', 4, true],
+            'must invalidate by default' => ['test3@example.com', 6],
             'must be invalid due to expired otp' => ['2348105948744', 5, null, 0],
             'must be valid due to long ttl' => ['2348105948744', 5, null, 500],
         ];
