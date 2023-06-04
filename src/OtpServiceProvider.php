@@ -3,6 +3,7 @@
 namespace Kodnificent\LaravelOtp;
 
 use Illuminate\Support\ServiceProvider;
+use Kodnificent\LaravelOtp\Contracts\Otp as ContractsOtp;
 
 class OtpServiceProvider extends ServiceProvider
 {
@@ -11,6 +12,10 @@ class OtpServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__.'/../config/default.php', 'otp'
         );
+
+        $this->app->bind(ContractsOtp::class, function ($app) {
+            return new Otp($app->make('config')->get('otp'));
+        });
     }
 
     public function boot(): void
