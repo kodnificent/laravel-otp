@@ -7,7 +7,7 @@ interface Otp
     public function generate(
         string $identifier,
         ?int $length = null
-    ): GeneratedOtp;
+    ): string;
 
     public function isValid(string $identifier, string $code, ?bool $invalidate = null, ?int $ttl = null): bool;
 }

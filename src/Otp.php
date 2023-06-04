@@ -76,7 +76,7 @@ class Otp implements OtpContract
         }
     }
 
-    public function generate(string $identifier, ?int $length = null): GeneratedOtp
+    public function generate(string $identifier, ?int $length = null): string
     {
         $this->setLength($length ?: $this->length);
 
@@ -88,7 +88,7 @@ class Otp implements OtpContract
         $secret->at = now()->getTimestamp();
         $secret->save();
 
-        return new GeneratedOtp($otp->at($secret->at));
+        return $otp->at($secret->at);
     }
 
     public function invalidate(string $identifier): void
@@ -131,10 +131,5 @@ class Otp implements OtpContract
         }
 
         return $is_valid;
-    }
-
-    public function send(): void
-    {
-        //
     }
 }

@@ -25,11 +25,11 @@ class OtpTest extends TestCase
 
         $this->assertEquals(
             $len,
-            strlen($otp->getCode()),
+            strlen($otp),
             'Otp code digits does not match the expected length.'
         );
 
-        $is_valid = $this->getOtp()->isValid($id, $otp->getCode(), $should_invalidate, $ttl);
+        $is_valid = $this->getOtp()->isValid($id, $otp, $should_invalidate, $ttl);
 
         if (!is_null($ttl) && $generated_at->addSeconds($ttl)->lte(now())) {
             $this->assertFalse($is_valid, 'isValid should return false because of expiry');
@@ -44,18 +44,18 @@ class OtpTest extends TestCase
             $by_default = is_null($should_invalidate) ? 'by default' : '';
 
             $this->assertFalse(
-                $this->getOtp()->isValid($id, $otp->getCode()),
+                $this->getOtp()->isValid($id, $otp),
                 "otp code should be invalidated $by_default after initial validation."
             );
         } else {
             $this->assertTrue(
-                $this->getOtp()->isValid($id, $otp->getCode()),
+                $this->getOtp()->isValid($id, $otp),
                 'otp code should remain valid after initial validation.'
             );
         }
 
         $this->getOtp()->invalidate($id);
-        $this->assertFalse($this->getOtp()->isValid($id, $otp->getCode()), 'Invalidate method is not working as expected.');
+        $this->assertFalse($this->getOtp()->isValid($id, $otp), 'Invalidate method is not working as expected.');
     }
 
     public static function generateMethodDataProvider(): array
