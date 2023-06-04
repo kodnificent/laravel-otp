@@ -1,6 +1,5 @@
 /vendor
 /node_modules
-/.phpunit.cache
 .env
 phpunit.xml
 .phpunit.result.cache
